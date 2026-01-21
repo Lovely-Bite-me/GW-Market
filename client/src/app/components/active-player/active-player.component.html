@@ -6,7 +6,7 @@
         <i class="fa fa-user-shield"></i>
       </div>
       <div class="header-title">
-        <h2>Change Player</h2>
+        <h2>Change player</h2>
         <span class="header-subtitle">Set your active trading character</span>
       </div>
     </div>
@@ -19,7 +19,7 @@
   <div class="modal-body" [formGroup]="form">
     <!-- Player Name Input -->
     <div class="form-section">
-      <label class="section-label">Active Player Name</label>
+      <label class="section-label">Active player name</label>
       <div class="input-wrapper">
         <i class="fa fa-user input-icon"></i>
         <input
@@ -39,20 +39,20 @@
     <div class="cert-section">
       <div class="cert-header">
         <i class="fa fa-certificate"></i>
-        <span>Character Certification</span>
+        <span>Character certification</span>
       </div>
 
       <!-- Certify Button -->
       <button class="cert-btn" (click)="addPlayer()">
         <i class="fa fa-plus-circle"></i>
-        <span>Certify a New Character</span>
+        <span>Certify a new character</span>
       </button>
-
+// specified because people are stupid 
       <!-- Secret Code Display -->
       <div class="secret-display" *ngIf="secret">
         <label class="secret-label">
           <i class="fa fa-key"></i>
-          Copy this whisper command in-game to verify
+          Copy & paste this whisper command and send it in-game to verify yourself.
         </label>
         <div class="secret-input-group">
           <input
@@ -72,14 +72,14 @@
     <div class="certified-section">
       <div class="certified-header">
         <i class="fa fa-shield-check"></i>
-        <span>Certified Characters</span>
+        <span>Certified characters</span>
         <span class="char-count" *ngIf="shop?.certified?.length">({{ shop?.certified.length }})</span>
       </div>
 
       <div class="empty-state" *ngIf="!shop?.certified?.length">
         <i class="fa fa-user-slash"></i>
         <p>You haven't certified any characters yet</p>
-        <span>Click "Certify a New Character" above to get started</span>
+        <span>Click "Certify a new character" above to get started</span>
       </div>
 
       <div class="char-grid" *ngIf="shop?.certified?.length">
@@ -107,7 +107,8 @@
     </button>
     <button class="confirm-btn" (click)="onConfirmPlayer()">
       <i class="fa fa-check"></i>
-      Confirm Player
+      Confirm player
     </button>
   </div>
 </div>
+
