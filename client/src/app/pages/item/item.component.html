@@ -89,7 +89,7 @@
       <div class="split-section sell-section">
         <h2 class="section-title sell-title">
           <i class="fa fa-arrow-up"></i>
-          Sell Orders
+          Sell orders
           <span class="section-count">({{ getTotalSellOrders() }})</span>
         </h2>
         <div class="split-orders-list scroll">
@@ -118,7 +118,7 @@
       <div class="split-section buy-section">
         <h2 class="section-title buy-title">
           <i class="fa fa-arrow-down"></i>
-          Buy Orders
+          Buy orders
           <span class="section-count">({{ getTotalBuyOrders() }})</span>
         </h2>
         <div class="split-orders-list scroll">
@@ -245,7 +245,7 @@
       <!-- Price Info -->
       <div class="detail-price-section" *ngIf="selectedOrder?.price">
         <div class="detail-price-row">
-          <span class="detail-price-label">Total Price</span>
+          <span class="detail-price-label">Total price</span>
           <div class="detail-price-value">
             <img [src]="selectedOrder.price.type | currencySource" class="detail-currency-icon" />
             <span class="detail-price-amount">{{ selectedOrder.price.price }}</span>
@@ -253,7 +253,7 @@
           </div>
         </div>
         <div class="detail-price-row unit-price">
-          <span class="detail-price-label">Price per Item</span>
+          <span class="detail-price-label">Price per item</span>
           <div class="detail-price-value">
             <span class="detail-price-decimal">{{ selectedOrder.price.price | decimalUnitPrice:selectedOrder.quantity }}</span>
             <span class="detail-price-fraction">({{ selectedOrder.div_price }}:{{ selectedOrder.div_quantity }})</span>
@@ -278,7 +278,7 @@
           </div>
         </div>
         <div class="detail-seller-row" *ngIf="selectedOrder?.lastRefresh">
-          <span class="detail-seller-label">Last Updated</span>
+          <span class="detail-seller-label">Last updated</span>
           <span class="detail-seller-time">{{ selectedOrder.lastRefresh | formatLastUpdate }}</span>
         </div>
       </div>
