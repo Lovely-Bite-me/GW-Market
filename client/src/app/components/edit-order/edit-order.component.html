@@ -7,7 +7,7 @@
         <i *ngIf="!item" class="fa fa-cube"></i>
       </div>
       <div class="header-title">
-        <h2>{{ confirm || 'Place Order' }}</h2>
+        <h2>{{ confirm || 'Place order' }}</h2>
         <div class="item-name" *ngIf="item">{{ item.name }}</div>
         <div class="item-name empty" *ngIf="!item">Select an item below</div>
       </div>
@@ -42,7 +42,7 @@
             <i class="fa fa-arrow-up"></i>
           </div>
           <div class="card-content">
-            <span class="card-title">Sell Item</span>
+            <span class="card-title">Sell item</span>
             <span class="card-desc">List an item for sale</span>
           </div>
           <div class="card-check">
@@ -58,8 +58,8 @@
             <i class="fa fa-arrow-down"></i>
           </div>
           <div class="card-content">
-            <span class="card-title">Buy Item</span>
-            <span class="card-desc">Post a buy request</span>
+            <span class="card-title">Buy item</span>
+            <span class="card-desc">Create a buy request</span>
           </div>
           <div class="card-check">
             <i class="fa" [class.fa-circle]="form.get('orderType')?.value !== OrderType.BUY" [class.fa-check-circle]="form.get('orderType')?.value === OrderType.BUY"></i>
@@ -93,7 +93,7 @@
     <div class="weapon-section" *ngIf="isWeapon && formWeapon" [formGroup]="formWeapon">
       <div class="weapon-header">
         <i class="fa fa-shield-halved"></i>
-        <span>Weapon Specifications</span>
+        <span>Weapon specifications</span>
       </div>
 
       <div class="form-row">
@@ -126,7 +126,7 @@
 
       <div class="form-row">
         <div class="form-group" style="flex: 2;">
-          <label>Core Modification</label>
+          <label>Core modification</label>
           <select class="form-select" formControlName="core">
             <option [ngValue]="null">None</option>
             <option *ngFor="let core of weaponLists.core" [ngValue]="core">{{ core }}</option>
@@ -164,11 +164,11 @@
     <div class="miniature-section" *ngIf="isMiniature" [formGroup]="formOther">
       <div class="weapon-header">
         <i class="fa fa-star"></i>
-        <span>Miniature Details</span>
+        <span>Miniature details</span>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Dedication Status</label>
+          <label>Dedication status</label>
           <app-toggle-group
             [options]="[{value: false, label: 'Undedicated'}, {value: true, label: 'Dedicated'}]"
             [value]="formOther.get('dedicated')?.value"
@@ -182,13 +182,13 @@
     <div class="advanced-section" [formGroup]="formOther">
       <div class="advanced-toggle" (click)="isAdvanced = !isAdvanced">
         <i class="fa fa-gear"></i>
-        <span>Advanced Options</span>
+        <span>Advanced options</span>
         <i class="fa" [class.fa-chevron-down]="!isAdvanced" [class.fa-chevron-up]="isAdvanced"></i>
       </div>
       <div class="advanced-content" *ngIf="isAdvanced">
         <div class="form-row">
           <div class="form-group">
-            <label>Pre-Searing Item</label>
+            <label>Pre-searing item</label>
             <app-toggle-group
               [options]="[{value: false, label: 'Normal'}, {value: true, label: 'Pre-Searing'}]"
               [value]="formOther.get('pre')?.value"
@@ -202,7 +202,7 @@
     <!-- Pricing Section -->
     <div class="pricing-section">
       <div class="section-label">
-        <span>{{ form.get('orderType')?.value === OrderType.SELL ? 'Asking Price' : 'Willing to Pay' }}</span>
+        <span>{{ form.get('orderType')?.value === OrderType.SELL ? 'Asking price' : 'Willing to pay' }}</span>
       </div>
       <div class="prices-container" formArrayName="prices">
         <div
@@ -219,7 +219,7 @@
           </div>
           <div class="price-inputs">
             <div class="price-field">
-              <label>Per Unit</label>
+              <label>Per unit</label>
               <div class="input-with-icon">
                 <img class="input-currency-icon" [src]="price.get('type')?.value | currencySource" alt="" />
                 <input
@@ -257,14 +257,14 @@
         </div>
         <button type="button" class="add-price-btn" (click)="addPrice()">
           <i class="fa fa-plus"></i>
-          <span>Add Currency</span>
+          <span>Add currency</span>
         </button>
       </div>
     </div>
 
     <!-- Description -->
     <div class="description-section">
-      <div class="section-label">Additional Notes</div>
+      <div class="section-label">Additional notes</div>
       <textarea
         class="form-textarea"
         formControlName="description"
@@ -282,7 +282,8 @@
     </button>
     <button class="confirm-btn" [class.sell]="form.get('orderType')?.value === OrderType.SELL" [class.buy]="form.get('orderType')?.value === OrderType.BUY" (click)="validateOrder()">
       <i class="fa" [class.fa-arrow-up]="form.get('orderType')?.value === OrderType.SELL" [class.fa-arrow-down]="form.get('orderType')?.value === OrderType.BUY"></i>
-      {{ confirm || 'Create Order' }}
+      {{ confirm || 'Create order' }}
     </button>
   </div>
 </div>
+
