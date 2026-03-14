@@ -170,7 +170,7 @@
 
           <!-- Pre-Nerf -->
           <div class="sidebar-section">
-            <label class="section-label">Pre-Nerf</label>
+            <label class="section-label">Pre-nerf</label>
             <app-toggle-group
               [options]="preNerfOptions"
               [value]="form.get('legacy')?.value"
@@ -190,7 +190,7 @@
 
           <!-- Price Range (Total) -->
           <div class="sidebar-section">
-            <label class="section-label">Price Total</label>
+            <label class="section-label">Total price</label>
             <div class="range-inputs">
               <input type="number" formControlName="priceMin" placeholder="Min" class="filter-input" min="0" />
               <span class="range-separator">to</span>
@@ -200,7 +200,7 @@
 
           <!-- Price Range (Each) -->
           <div class="sidebar-section">
-            <label class="section-label">Price Each</label>
+            <label class="section-label">Price per</label>
             <div class="range-inputs">
               <input type="number" formControlName="priceEachMin" placeholder="Min" class="filter-input" min="0" />
               <span class="range-separator">to</span>
@@ -220,7 +220,7 @@
               <label class="checkbox-item">
                 <input type="checkbox" formControlName="certifiedOnly" />
                 <span class="custom-checkbox"></span>
-                <span>Certified Only</span>
+                <span>Certified only</span>
               </label>
             </div>
           </div>
@@ -229,7 +229,7 @@
           <div class="sidebar-actions">
             <button type="button" class="clear-btn" (click)="onClear()">
               <i class="fa fa-times"></i>
-              <span>Clear Filters</span>
+              <span>Clear filters</span>
             </button>
           </div>
         </aside>
@@ -347,7 +347,7 @@
             <div class="load-more" *ngIf="hasMore">
               <button type="button" class="load-more-btn" (click)="loadMore()" [disabled]="loading">
                 <i class="fa" [class.fa-plus]="!loading" [class.fa-spinner]="loading" [class.fa-spin]="loading"></i>
-                Load More ({{ searchResult.orders.length }} of {{ searchResult.total }})
+                Load more ({{ searchResult.orders.length }} of {{ searchResult.total }})
               </button>
             </div>
           </section>
@@ -356,7 +356,7 @@
           <section class="initial-state" *ngIf="!hasSearched">
             <div class="initial-content">
               <i class="fa fa-search"></i>
-              <h1>Advanced Search</h1>
+              <h1>Advanced search</h1>
               <p>Use the filters and search to find exactly what you're looking for</p>
             </div>
           </section>
