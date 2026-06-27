@@ -208,7 +208,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   // Populate item details for filtering
   private shopUpdate(): void {
-    const bonus = this.shop.reputation ? this.shop.reputation.positive - this.shop.reputation.negative : 0;
+    const bonus = UtilityHelper.bonusFromShop(this.shop);
     this.personalHighlight = (15 + bonus) * 60 * 1000;
     if (this.shop?.items) {
       this.updateItemList();

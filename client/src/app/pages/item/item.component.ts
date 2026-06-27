@@ -211,7 +211,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   }
 
   getOrderTime(item: ItemOrder | ShopItem): Time {
-    return UtilityHelper.getTimeCategory(item.lastRefresh, false, item.positives || item.negatives ? item.positives - item.negatives : 0);
+    return UtilityHelper.getTimeCategory(item.lastRefresh, false, item.bonus || 0);
   }
 
   getAuctionTime(item: Auction): Time {

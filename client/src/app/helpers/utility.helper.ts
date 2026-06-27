@@ -1,6 +1,6 @@
 import { BasicItem } from '@app/models/item.model';
 import { ItemOrder, Time } from '@app/models/order.model';
-import { Price, ShopItem, ShopPrice } from '@app/models/shop.model';
+import { Price, Shop, ShopItem, ShopPrice } from '@app/models/shop.model';
 
 export class UtilityHelper {
   static copy(item): any {
@@ -235,5 +235,22 @@ export class UtilityHelper {
       case Price.ARM:
         return price.price * 100;
     }
+  }
+
+  public static bonusFromShop(shop: Shop): number {
+    if (shop) {
+      let bonus = 0;
+      bonus += shop.reputation?.positive || 0;
+      bonus -= shop.reputation?.negative || 0;
+      if (shop.recruits) {
+        shop.recruits.forEach(recruit => {
+          if (recruit.lastRefresh && recruit.lastRefresh > Date.now() - 1000 * 60 * 60 * 24 * 7) {
+            bonus += recruit.points || 0;
+          }
+        });
+      }
+      return Math.min(bonus, 75);
+    }
+    return 0;
   }
 }

@@ -62,14 +62,16 @@ export class ShopService {
     order.prices.forEach((price) => {
       const unit = price.price / order.quantity;
       const minPrice = prices.find((p) => p.type === price.type);
-      if (minPrice.quantity === 0) {
-        minPrice.price = unit;
-        minPrice.quantity = order.quantity;
-      } else if (minPrice.price > unit) {
-        minPrice.price = unit;
-        minPrice.quantity = order.quantity;
-      } else if (minPrice.price === unit) {
-        minPrice.quantity += order.quantity;
+      if (minPrice) {
+        if (minPrice.quantity === 0) {
+          minPrice.price = unit;
+          minPrice.quantity = order.quantity;
+        } else if (minPrice.price > unit) {
+          minPrice.price = unit;
+          minPrice.quantity = order.quantity;
+        } else if (minPrice.price === unit) {
+          minPrice.quantity += order.quantity;
+        }
       }
     });
   }
@@ -140,6 +142,7 @@ export class ShopService {
       }
     });
     // recruit reflexion
+    // TODO update shop recruits on a regular basis (because of last refresh not refresed)
     shops.forEach((shop) => {
       if (shop.recruiter) {
         const recruiterShop = this.allShopMap[this.publicShopMap[shop.recruiter.shopId]];
@@ -335,7 +338,7 @@ export class ShopService {
   public static closeShop(uuid: string): void {
     const activeShop = this.activeShopMap[uuid];
     if (activeShop) {
-      const bonus = (activeShop.reputation?.positive || 0) - (activeShop.reputation?.negative || 0);
+      const bonus = UtilityHelper.bonusFromShop(activeShop);
       activeShop.lastRefresh = Date.now() - TIME_ONLINE - bonus * 60 * 1000;
     }
     if (this.onlineShopMap[uuid]) {
@@ -470,6 +473,7 @@ export class ShopService {
           item.authCertified = isCertified;
           item.positives = shop.reputation?.positive || 0;
           item.negatives = shop.reputation?.negative || 0;
+          item.bonus = UtilityHelper.bonusFromShop(shop);
           item.shopId = shop.publicId;
           item.lastRefresh = shop.lastRefresh;
           if (!this.activeItemMap[item.name]) {

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilityHelper } from '@app/helpers/utility.helper';
 import { BasicItem } from '@app/models/item.model';
 import { Message, MessageType } from '@app/models/message.model';
 import { OrderType, Shop } from '@app/models/shop.model';
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
     this.shopService.getActiveShop().subscribe(shop => {
       this.shop = shop;
       if (this.shop && this.shop.lastRefresh && !this.timerActive) {
-        this.bonus = this.shop.reputation ? this.shop.reputation.positive - this.shop.reputation.negative : 0;
+        this.bonus = UtilityHelper.bonusFromShop(this.shop);
         this.timeLeft = this.shop.lastRefresh + (15 + this.bonus) * 60 * 1000 - Date.now();
         this.refreshTimer();
       }

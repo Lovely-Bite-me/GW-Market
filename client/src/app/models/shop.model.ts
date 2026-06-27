@@ -82,6 +82,7 @@ export interface ShopItem {
   kamadanChat?: boolean;
   positives?: number;
   negatives?: number;
+  bonus?: number;
   lastRefresh?: number;
   shopId?: string;
 }

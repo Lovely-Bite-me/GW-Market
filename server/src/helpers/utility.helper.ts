@@ -1,4 +1,5 @@
 import { ReputationReason } from '../models/reputation.model';
+import { Shop } from '../models/shop.model';
 
 export class UtilityHelper {
   static copy(item) {
@@ -53,5 +54,22 @@ export class UtilityHelper {
       default:
         return 'Unknown reason';
     }
+  }
+
+  static bonusFromShop(shop: Shop): number {
+    if (shop) {
+      let bonus = 0;
+      bonus += shop.reputation?.positive || 0;
+      bonus -= shop.reputation?.negative || 0;
+      if (shop.recruits) {
+        shop.recruits.forEach((recruit) => {
+          if (recruit.lastRefresh && recruit.lastRefresh > Date.now() - 1000 * 60 * 60 * 24 * 7) {
+            bonus += recruit.points || 0;
+          }
+        });
+      }
+      return Math.min(bonus, 75);
+    }
+    return 0;
   }
 }

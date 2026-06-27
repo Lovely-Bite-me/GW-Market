@@ -57,6 +57,7 @@ export interface ItemOrder {
   lastRefresh?: number;
   positives?: number;
   negatives?: number;
+  bonus?: number;
   shopId?: string;
 }
 
