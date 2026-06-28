@@ -9,6 +9,7 @@ export class ItemService {
   public static allCategoryMap: { [key: string]: { name: string; description: string; inherit?: string } } = {};
   public static allItems: Array<Item> = [];
   public static allItemMap: { [key: string]: Item } = {};
+  public static acronymMap: { [key: string]: string } = {};
   public static exoticUpgrades: Array<Item> = [];
   public static categoryInheritances: { [key: string]: Array<string> } = {};
   public static reverseCategoryInheritances: { [key: string]: Array<string> } = {};
@@ -30,6 +31,7 @@ export class ItemService {
     this.loadMiniatures();
     this.loadServices();
     this.loadExotic();
+    this.loadAcronyms();
     this.generateClientJson();
     this.generateInheritances();
     this.allItems = Object.values(this.allItemMap).filter((item) => !item.hidden);
@@ -190,6 +192,16 @@ export class ItemService {
       }
     });
   };
+  private static loadAcronyms = () => {
+    const jsonData = fs.readFileSync('./data/acronym.json');
+    const acronyms = JSON.parse(jsonData);
+    this.acronymMap = {};
+    for (const key in acronyms.items) {
+      for (const pattern of acronyms.items[key]) {
+        this.acronymMap[pattern.toLowerCase()] = key;
+      }
+    }
+  };
 
   private static generateClientJson = () => {
     const outputPath = '../assets/data.json';
@@ -265,6 +277,9 @@ export class ItemService {
     // const results = resultsIndex.map((i) => this.allItems[i]);
     const portions = search.split(' ').filter((p) => p.trim());
     const results = this.allItems.filter((item) => portions.every((p) => item.name.toLowerCase().includes(p.toLowerCase())));
+    if (this.acronymMap[search.toLowerCase()]) {
+      results.unshift(this.allItemMap[this.acronymMap[search.toLowerCase()]]);
+    }
     return results.slice(0, limit);
   };
 }
