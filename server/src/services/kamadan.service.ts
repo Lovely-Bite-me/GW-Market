@@ -6,9 +6,10 @@ import { Item, OrderType, Price, ShopItem } from '../models/shop.model';
 const fs = require('fs');
 
 export class KamadanService {
+  public static kamadanItems: Array<ShopItem> = [];
+
   private static kamadanurl = 'wss://kamadan.gwtoolbox.com/';
   private static ws: WebSocket;
-  private static kamadanItems: Array<ShopItem> = [];
   private static reconnectAttempts = 0;
   private static maxReconnectAttempts = 10;
   private static baseReconnectDelay = 1000; // 1 second

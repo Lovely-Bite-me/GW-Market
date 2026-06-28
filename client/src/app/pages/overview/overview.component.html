@@ -44,6 +44,28 @@
           </div>
         </div>
 
+        <!-- PIE CHARTS 2x2 -->
+        <div class="pie-grid">
+          <div class="panel panel--dark pie-block">
+            <span class="pie-title cursor-help" title="Repartition of orders by order type over a week">Order type</span>
+            <div echarts [options]="repartitionType" class="pie-canvas" *ngIf="repartitionType"></div>
+          </div>
+          <div class="panel panel--dark pie-block">
+            <span class="pie-title cursor-help" title="Repartition of purchases by order origin over a week">Origin</span>
+            <div echarts [options]="repartitionOrigin" class="pie-canvas" *ngIf="repartitionOrigin"></div>
+          </div>
+          <div class="panel panel--dark pie-block">
+            <span class="pie-title cursor-help" title="Repartition of orders by way to ensure player validity over recent orders"
+              >Security</span
+            >
+            <div echarts [options]="repartitionRecent" class="pie-canvas" *ngIf="repartitionRecent"></div>
+          </div>
+          <div class="panel panel--dark pie-block">
+            <span class="pie-title cursor-help" title="Repartition of currency required by orders over a week">Currency</span>
+            <div echarts [options]="repartitionCurrency" class="pie-canvas" *ngIf="repartitionCurrency"></div>
+          </div>
+        </div>
+
         <!-- CENTER: SUPERVISOR -->
         <div class="center-block">
           <div class="panel panel--dark supervisor-block">

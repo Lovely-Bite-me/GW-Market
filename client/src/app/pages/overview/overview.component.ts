@@ -13,6 +13,12 @@ interface OverviewSeries {
   data: Array<OverviewData>;
 }
 
+interface OverviewRepartition {
+  value: number;
+  label: string;
+  color: string;
+}
+
 export type OverviewRange = 'all' | 'week' | 'day';
 
 const RANGE_MS: Record<OverviewRange, number | null> = {
@@ -34,6 +40,11 @@ export class OverviewComponent implements OnInit {
   public chartReputation: EChartsOption;
   public chartConnections: EChartsOption;
   public chartRefreshes: EChartsOption;
+
+  public repartitionType: EChartsOption;
+  public repartitionOrigin: EChartsOption;
+  public repartitionRecent: EChartsOption;
+  public repartitionCurrency: EChartsOption;
 
   constructor(
     private fb: FormBuilder,
@@ -108,6 +119,8 @@ export class OverviewComponent implements OnInit {
       { name: 'All shop updates', color: '#22c55e', data: this.filterAndAggregate(o.refreshesAllHistory ?? []) },
       { name: 'Unique shop updates', color: '#f97316', data: this.filterAndAggregate(o.refreshesUniqueHistory ?? []) }
     ]);
+
+    this.buildRepartitions();
   }
 
   private buildChart(series: OverviewSeries[]): EChartsOption {
@@ -186,6 +199,82 @@ export class OverviewComponent implements OnInit {
       },
       yAxis: yAxes,
       series: builtSeries
+    };
+  }
+
+  private buildRepartitions(): void {
+    const o = this.overview;
+    if (!o) return;
+
+    this.repartitionType = this.buildPieChart([
+      { value: o.repartitionTypeBuy, label: 'Buy', color: '#f97316' },
+      { value: o.repartitionTypeSell, label: 'Sell', color: '#22c55e' },
+      { value: o.repartitionTypeAuction, label: 'Auction', color: '#7311d4' }
+    ]);
+
+    this.repartitionOrigin = this.buildPieChart([
+      { value: o.repartitionOriginMarket, label: 'Market', color: '#60a5fa' },
+      { value: o.repartitionOriginToolBox, label: 'ToolBox', color: '#22c55e' },
+      { value: o.repartitionOriginKamdan, label: 'Kamdan', color: '#d4a853' }
+    ]);
+
+    this.repartitionRecent = this.buildPieChart([
+      { value: o.repartitionRecentFree, label: 'None', color: '#888888' },
+      { value: o.repartitionRecentCertified, label: 'Certified', color: '#60a5fa' },
+      { value: o.repartitionRecentOnline, label: 'Online', color: '#22c55e' },
+      { value: o.repartitionRecentKamdan, label: 'Kamdan', color: '#d4a853' }
+    ]);
+
+    this.repartitionCurrency = this.buildPieChart([
+      { value: o.repartitionCurrencyPlatinium, label: 'Plat', color: '#bbbbaa' },
+      { value: o.repartitionCurrencyEcto, label: 'Ecto', color: '#60a5fa' },
+      { value: o.repartitionCurrencyArmbrace, label: 'Arm', color: '#22c55e' },
+      { value: o.repartitionCurrencyBlackDye, label: 'B. Dye', color: '#222233' }
+    ]);
+  }
+
+  private buildPieChart(items: OverviewRepartition[]): EChartsOption {
+    return {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: '#2a241f',
+        borderColor: '#d4a853',
+        borderWidth: 1,
+        textStyle: { color: '#f4e8c1', fontSize: 12 },
+        formatter: (p: any) => `${p.name}: <strong>${Math.round(p.value)}</strong> (${p.percent?.toFixed(1)}%)`
+      },
+      legend: {
+        orient: 'horizontal',
+        bottom: 2,
+        textStyle: { color: '#e8dcc4', fontSize: 9 },
+        inactiveColor: '#3a3430',
+        itemWidth: 10,
+        itemHeight: 8,
+        data: items.map(i => ({ name: i.label, itemStyle: { color: i.color } }))
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['38%', '68%'],
+          center: ['50%', '38%'],
+          minAngle: 5,
+          data: items.map(i => ({
+            value: i.value === 0 ? 0.001 : i.value,
+            name: i.label,
+            itemStyle: { color: i.color }
+          })),
+          label: { show: false },
+          labelLine: { show: false },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 8,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0,0,0,0.4)'
+            }
+          }
+        }
+      ]
     };
   }
 }

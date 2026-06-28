@@ -690,7 +690,7 @@ export class ItemComponent implements OnInit, OnDestroy {
       ],
       orderType: order.orderType,
       listedTime: order.listedTime,
-      origin: PurchaseOrigin.CLIENT,
+      origin: order.kamadanChat ? PurchaseOrigin.KAMADAN : PurchaseOrigin.CLIENT,
       weaponDetails: order.item.weaponDetails,
       orderDetails: order.item.orderDetails
     } as Purchase);

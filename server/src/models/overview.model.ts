@@ -17,6 +17,21 @@ export interface Overview {
   connectionsUniqueHistory: Array<OverviewData>;
   refreshesAllHistory: Array<OverviewData>;
   refreshesUniqueHistory: Array<OverviewData>;
+  // pie charts
+  repartitionTypeBuy: number;
+  repartitionTypeSell: number;
+  repartitionTypeAuction: number;
+  repartitionOriginMarket: number;
+  repartitionOriginToolBox: number;
+  repartitionOriginKamdan: number;
+  repartitionRecentFree: number;
+  repartitionRecentCertified: number;
+  repartitionRecentOnline: number;
+  repartitionRecentKamdan: number;
+  repartitionCurrencyPlatinium: number;
+  repartitionCurrencyEcto: number;
+  repartitionCurrencyArmbrace: number;
+  repartitionCurrencyBlackDye: number;
 }
 
 export interface LeaderboardShop {
