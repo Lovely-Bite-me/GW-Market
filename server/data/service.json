@@ -252,6 +252,57 @@
     ]
   },
   {
+    "type": "Cape Trim",
+    "description": "Let another player spend their tournament points to grant your guild a cape trim",
+    "items": [
+      {
+        "name": "Blue Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a blue cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Green Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a green cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Orange Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a orange cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Pink Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a pink cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Purple Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a purple cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Red Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a red cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Silver Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a silver cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Obsidian Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild an obsidian cape trim.",
+        "wiki": "Cape"
+      },
+      {
+        "name": "Gold Cape Trim",
+        "description": "Let another player spend their tournament points to grant your guild a gold cape trim.",
+        "wiki": "Cape"
+      }
+    ]
+  },
+  {
     "type": "Reputation Rank Farm",
     "description": "Farming session to gather reputation for a specific faction, customer is supposed to have minimal activity.",
     "items": [
