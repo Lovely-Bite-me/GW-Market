@@ -15,7 +15,8 @@ export interface SearchFilter {
   attribute?: string; // Fire, Marksmanship, etc.
   reqMin?: number; // Minimum requirement (0-13)
   reqMax?: number; // Maximum requirement (0-13)
-  inscription?: boolean; // undefined = any, true = inscr, false = OS
+  inscription?: boolean;
+  oldSchool?: boolean;
   core?: string; // Specific inscription name
   exotic?: string; // Specific exotic mod name
   prefix?: string; // Specific prefix mod
@@ -40,6 +41,7 @@ export interface SearchFilter {
   timeRange?: 'online' | 'today' | 'week' | 'all';
   onlineOnly?: boolean; // Only daybreakOnline = true
   certifiedOnly?: boolean; // Only authCertified = true
+  maxOnly?: boolean; // Only notMax = true (for weapons and upgrades)
 
   // Pagination
   limit?: number; // Max results (default 50)

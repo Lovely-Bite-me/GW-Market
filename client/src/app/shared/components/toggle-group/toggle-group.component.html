@@ -11,6 +11,6 @@
   >
     <img *ngIf="option.imgSrc" class="toggle-img" [src]="option.imgSrc" alt="" />
     <i *ngIf="getIcon(option) && !option.imgSrc" class="fa" [ngClass]="getIcon(option)"></i>
-    <span>{{ option.label }}</span>
+    <span *ngIf="option.label">{{ option.label }}</span>
   </button>
 </div>

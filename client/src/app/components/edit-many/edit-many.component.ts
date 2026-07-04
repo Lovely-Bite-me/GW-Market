@@ -111,7 +111,8 @@ export class EditManyComponent implements OnInit, OnChanges, OnDestroy {
             ? this.fb.group({
                 attribute: [order.weaponDetails.attribute || null],
                 requirement: [order.weaponDetails.requirement || null],
-                inscription: [order.weaponDetails.inscription || false]
+                inscription: [order.weaponDetails.inscription || false],
+                oldSchool: [order.weaponDetails.oldSchool || false]
               })
             : undefined
         });
@@ -147,7 +148,8 @@ export class EditManyComponent implements OnInit, OnChanges, OnDestroy {
             ? this.fb.group({
                 attribute: [db.attribute || null],
                 requirement: [db.requirement || null],
-                inscription: [db.inscription || false]
+                inscription: [db.inscription || false],
+                oldSchool: [db.oldSchool || false]
               })
             : undefined,
           orderDetails: db.attribute

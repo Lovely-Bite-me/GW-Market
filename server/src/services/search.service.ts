@@ -197,6 +197,7 @@ export class SearchService {
     // Online/certified status
     if (filter.onlineOnly && !order.daybreakOnline) return false;
     if (filter.certifiedOnly && !order.authCertified) return false;
+    if (filter.maxOnly && !order.orderDetails?.notMax) return false;
 
     // Weapon details filters
     const wd = order.weaponDetails;
@@ -204,6 +205,7 @@ export class SearchService {
     if (filter.reqMin !== undefined && (!wd || wd.requirement < filter.reqMin)) return false;
     if (filter.reqMax !== undefined && (!wd || wd.requirement > filter.reqMax)) return false;
     if (filter.inscription !== undefined && (!wd || wd.inscription !== filter.inscription)) return false;
+    if (filter.oldSchool !== undefined && (!wd || wd.oldSchool !== filter.oldSchool)) return false;
     if (filter.core && (!wd || (wd.core !== filter.core && !wd.extraMods?.includes(filter.core)))) return false;
     if (filter.exotic && (!wd || (wd.core !== filter.exotic && !wd.extraMods?.includes(filter.exotic)))) return false;
     if (filter.prefix && (!wd || wd.prefix !== filter.prefix)) return false;

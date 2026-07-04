@@ -501,6 +501,7 @@ export class ShopService {
       attribute: requirement?.attribute || null,
       requirement: requirement?.requirement || null,
       inscription: item?.inscribable || false,
+      oldSchool: item ? !item.inscribable : false,
       goldPrice: item?.value || null
     };
   }

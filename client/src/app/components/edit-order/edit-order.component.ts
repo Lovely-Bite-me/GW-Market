@@ -45,6 +45,7 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
   public isAuction = false;
   // weapons
   public isWeapon = false;
+  public isNotMax = false;
   public isLocked = true;
   public attributes = VARIABLE_ATTRIBUTE;
   public lockWeapons = LOCKED_WEAPON;
@@ -111,7 +112,8 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
     this.formWeapon = this.fb.group({
       attribute: ['any', Validators.required],
       requirement: [9, [Validators.min(0), Validators.max(13)]],
-      inscription: [true],
+      inscription: [false],
+      oldSchool: [false],
       core: [null],
       prefix: [null],
       suffix: [null],
@@ -121,7 +123,8 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
       dedicated: [false],
       pre: [false],
       note: [''],
-      goldPrice: [null, Validators.min(0)]
+      goldPrice: [null, Validators.min(0)],
+      notMax: [false]
     });
     if (this.original) {
       this.loadOrder(this.original);
@@ -143,8 +146,8 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
         }
       }
     });
-    this.formWeapon.get('inscription')?.valueChanges.subscribe(value => {
-      this.isOldSchool = !value;
+    this.formWeapon.get('oldSchool')?.valueChanges.subscribe(value => {
+      this.isOldSchool = value;
       if (!this.loading) {
         if (this.isOldSchool) {
           this.extraModValues = [];
@@ -195,10 +198,11 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
     this.form.patchValue(order);
     this.formOther.patchValue(order.orderDetails || {});
     this.isWeapon = WeaponHelper.isWeapon(order.item);
+    this.isNotMax = WeaponHelper.isNotMax(order.item);
     this.isMiniature = WeaponHelper.isMiniature(order.item);
     if (this.isWeapon && this.allItems) {
       this.isLocked = LOCKED_WEAPON.includes(order.item.category);
-      this.isOldSchool = order.weaponDetails ? !order.weaponDetails.inscription : false;
+      this.isOldSchool = order.weaponDetails ? order.weaponDetails.oldSchool : false;
       this.weaponLists = WeaponHelper.getItemList(order.item?.category, this.itemService.getUpgrades());
       this.generalUpgradeOptions = [...this.weaponLists.core, ...this.exoticUpgradeOptions];
       this.extraModValues = [...(order.weaponDetails?.extraMods || [])];
@@ -222,6 +226,7 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
     }
     // Reset flags for new item
     this.isWeapon = WeaponHelper.isWeapon(item);
+    this.isNotMax = WeaponHelper.isNotMax(item);
     this.isMiniature = WeaponHelper.isMiniature(item);
     // Set weapon flag if applicable
     if (this.isWeapon && this.allItems) {
@@ -238,6 +243,31 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
 
   getprices(): UntypedFormArray {
     return this.form.get('prices') as UntypedFormArray;
+  }
+
+  getInscriptionValue(): string {
+    const inscription = this.formWeapon.get('inscription')?.value;
+    const oldSchool = this.formWeapon.get('oldSchool')?.value;
+    if (inscription) {
+      return 'ins';
+    } else if (oldSchool) {
+      return 'os';
+    } else {
+      return 'none';
+    }
+  }
+
+  setInscriptionValue(value: string): void {
+    if (value === 'ins') {
+      this.formWeapon.patchValue({ inscription: true });
+      this.formWeapon.patchValue({ oldSchool: false });
+    } else if (value === 'os') {
+      this.formWeapon.patchValue({ inscription: false });
+      this.formWeapon.patchValue({ oldSchool: true });
+    } else {
+      this.formWeapon.patchValue({ inscription: false });
+      this.formWeapon.patchValue({ oldSchool: false });
+    }
   }
 
   addExtraMod(): void {
@@ -358,7 +388,8 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
     this.formWeapon.reset({
       attribute: 'any',
       requirement: 9,
-      inscription: true,
+      inscription: false,
+      oldSchool: false,
       core: null,
       prefix: null,
       suffix: null,
@@ -368,7 +399,9 @@ export class EditOrderComponent implements OnInit, OnChanges, OnDestroy {
     this.formOther.reset({
       dedicated: false,
       pre: false,
-      note: ''
+      note: '',
+      goldPrice: null,
+      notMax: false
     });
     this.isWeapon = false;
     this.isOldSchool = false;

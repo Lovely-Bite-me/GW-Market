@@ -24,6 +24,7 @@ export interface KamadanSplit extends KamadanPosition {
   requirement?: number;
   attribute?: string;
   inscription?: boolean;
+  oldSchool?: boolean;
   dedicated?: boolean;
 }
 

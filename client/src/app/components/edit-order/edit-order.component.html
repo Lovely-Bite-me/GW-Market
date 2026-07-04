@@ -94,12 +94,22 @@
 
     <!-- Quantity & Visibility Row -->
     <div class="details-row" *ngIf="!isAuction">
-      <div class="form-group quantity-group">
+      <div class="form-group quantity-group" style="flex: 1">
         <label>Quantity</label>
         <app-qty-input formControlName="quantity" [min]="1" [max]="9999"></app-qty-input>
       </div>
-
-      <div class="form-group visibility-group">
+      <div class="form-group" style="flex: 2" *ngIf="isNotMax">
+        <label>Maximum Stats</label>
+        <app-toggle-group
+          [options]="[
+            { value: true, label: 'Not Max', icon: 'fa-angles-down' },
+            { value: false, label: 'Max', icon: 'fa-angles-up' }
+          ]"
+          [value]="formOther.get('notMax')?.value"
+          (valueChange)="formOther.patchValue({ notMax: $event })"
+        ></app-toggle-group>
+      </div>
+      <div class="form-group visibility-group" style="flex: 2">
         <label>Visibility</label>
         <app-toggle-group
           [options]="visibilityOptions"
@@ -164,11 +174,12 @@
           <label>Inscription</label>
           <app-toggle-group
             [options]="[
-              { value: true, label: 'Inscribable', icon: 'fa-pen-fancy' },
-              { value: false, label: 'OldSchool', icon: 'fa-scroll' }
+              { value: 'ins', label: 'Inscribable', icon: 'fa-pen-fancy' },
+              { value: 'none', label: '', icon: 'fa-circle-question' },
+              { value: 'os', label: 'OldSchool', icon: 'fa-scroll' }
             ]"
-            [value]="formWeapon.get('inscription')?.value"
-            (valueChange)="formWeapon.patchValue({ inscription: $event })"
+            [value]="getInscriptionValue()"
+            (valueChange)="setInscriptionValue($event)"
           ></app-toggle-group>
         </div>
       </div>

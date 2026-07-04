@@ -23,6 +23,7 @@ export interface DaybreakItem {
   attribute?: string;
   requirement?: number;
   inscription?: boolean;
+  oldSchool?: boolean;
   goldPrice?: number;
 }
 
@@ -38,6 +39,7 @@ export interface WeaponDetails {
   attribute: string;
   requirement: number;
   inscription: boolean;
+  oldSchool: boolean;
   core: string;
   prefix: string;
   suffix: string;
@@ -49,4 +51,5 @@ export interface OrderDetails {
   pre: boolean;
   note: string;
   goldPrice: number;
+  notMax: boolean;
 }

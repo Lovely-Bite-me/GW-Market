@@ -54,6 +54,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     reqMin: 0,
     reqMax: 13,
     inscription: null,
+    oldSchool: null,
     exotic: null,
     core: null,
     prefix: null,

@@ -71,12 +71,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   ];
 
   public inscriptionOptions: ToggleOption[] = [
-    { value: null, label: 'Any' },
-    { value: true, label: 'Inscriptible', icon: 'fa-pen-fancy' },
-    { value: false, label: 'OldSchool', icon: 'fa-scroll' }
+    { value: 'all', label: 'All', icon: '' },
+    { value: 'ins', label: 'Inscribable', icon: 'fa-pen-fancy' },
+    { value: 'os', label: 'OldSchool', icon: 'fa-scroll' }
   ];
 
   public isWeapon = false;
+  public isNotMax = false;
   public isOldSchool = false;
   public weaponLists: { core: Array<Upgrade>; prefix: Array<Upgrade>; suffix: Array<Upgrade> } = {
     core: [],
@@ -166,6 +167,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       reqMin: [0],
       reqMax: [13],
       inscription: [null],
+      oldSchool: [null],
       core: [null],
       exotic: [null],
       prefix: [null],
@@ -182,6 +184,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       timeRange: ['all'],
       onlineOnly: [false],
       certifiedOnly: [false],
+      maxOnly: [false],
       sortBy: ['time'],
       sortOrder: ['desc']
     });
@@ -202,8 +205,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.form.valueChanges.subscribe(value => {
       localStorage.setItem('searchForm', JSON.stringify(value));
       this.isWeapon = value.family === 'weapon';
+      this.isNotMax = this.isWeapon || value.family === 'upgrade';
       if (this.isWeapon) {
-        this.isOldSchool = value.inscription === false;
+        this.isOldSchool = value.oldSchool === true;
         this.refreshWeaponUpgrades();
       }
     });
@@ -263,6 +267,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (f.reqMin > 0) filter.reqMin = f.reqMin;
     if (f.reqMax < 13) filter.reqMax = f.reqMax;
     if (f.inscription !== null) filter.inscription = f.inscription;
+    if (f.oldSchool !== null) filter.oldSchool = f.oldSchool;
     if (f.core) filter.core = f.core;
     if (f.exotic) filter.exotic = f.exotic;
     if (f.prefix) filter.prefix = f.prefix;
@@ -279,6 +284,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (f.timeRange && f.timeRange !== 'all') filter.timeRange = f.timeRange;
     if (f.onlineOnly) filter.onlineOnly = true;
     if (f.certifiedOnly) filter.certifiedOnly = true;
+    if (f.maxOnly) filter.maxOnly = true;
     if (f.sortBy) filter.sortBy = f.sortBy;
     if (f.sortOrder) filter.sortOrder = f.sortOrder;
 
@@ -296,6 +302,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   get showWeaponFilters(): boolean {
     return this.isWeaponFamily || this.selectedFamily === 'unique';
+  }
+
+  get showNotMaxFilters(): boolean {
+    return this.isWeaponFamily || this.selectedFamily === 'upgrade';
   }
 
   get showMiniatureFilters(): boolean {
@@ -331,6 +341,31 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   getTimeCategory(lastRefresh: number): Time {
     return UtilityHelper.getTimeCategory(lastRefresh);
+  }
+
+  getInscriptionValue(): string {
+    const inscription = this.form.get('inscription')?.value;
+    const oldSchool = this.form.get('oldSchool')?.value;
+    if (inscription) {
+      return 'ins';
+    } else if (oldSchool) {
+      return 'os';
+    } else {
+      return 'all';
+    }
+  }
+
+  setInscriptionValue(value: string): void {
+    if (value === 'ins') {
+      this.form.patchValue({ inscription: true });
+      this.form.patchValue({ oldSchool: false });
+    } else if (value === 'os') {
+      this.form.patchValue({ inscription: false });
+      this.form.patchValue({ oldSchool: true });
+    } else {
+      this.form.patchValue({ inscription: false });
+      this.form.patchValue({ oldSchool: false });
+    }
   }
 
   // Price helpers
@@ -388,6 +423,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (f.attribute) count++;
     if (f.reqMin > 0 || f.reqMax < 13) count++;
     if (f.inscription !== null) count++;
+    if (f.oldSchool !== null) count++;
     if (f.preSearing !== null) count++;
     if (f.miniDedicated !== null) count++;
     if (f.currency !== null) count++;
@@ -395,6 +431,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (f.priceEachMin || f.priceEachMax) count++;
     if (f.onlineOnly) count++;
     if (f.certifiedOnly) count++;
+    if (f.maxOnly) count++;
+    if (f.goldMin || f.goldMax) count++;
     if (f.core) count++;
     if (f.exotic) count++;
     if (f.prefix) count++;

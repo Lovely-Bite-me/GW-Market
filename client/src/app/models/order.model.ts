@@ -76,6 +76,7 @@ export interface OrderFilter {
   reqMin: number;
   reqMax: number;
   inscription: string;
+  oldSchool: string;
   exotic: string;
   core: string;
   prefix: string;
@@ -107,6 +108,7 @@ export interface SearchFilter {
   reqMin?: number;
   reqMax?: number;
   inscription?: boolean;
+  oldSchool?: boolean;
   core?: string;
   exotic?: string;
   prefix?: string;
@@ -131,6 +133,7 @@ export interface SearchFilter {
   timeRange?: 'online' | 'today' | 'week' | 'all';
   onlineOnly?: boolean;
   certifiedOnly?: boolean;
+  maxOnly?: boolean;
 
   // Pagination
   limit?: number;
@@ -164,6 +167,7 @@ export interface SearchResultOrder {
     attribute: string;
     requirement: number;
     inscription: boolean;
+    oldSchool: boolean;
     core: string | null;
     prefix: string | null;
     suffix: string | null;
@@ -172,6 +176,7 @@ export interface SearchResultOrder {
   category: string;
   preSearing?: boolean;
   dedicated?: boolean;
+  notMax?: boolean;
   item?: BasicItem;
 }
 

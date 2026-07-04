@@ -80,12 +80,14 @@ export interface OrderDetails {
   pre?: boolean;
   note?: string;
   goldPrice?: number;
+  notMax?: boolean;
 }
 
 export interface WeaponDetails {
   attribute: string;
   requirement: number;
   inscription: boolean;
+  oldSchool: boolean;
   core: string | null;
   prefix: string | null;
   suffix: string | null;

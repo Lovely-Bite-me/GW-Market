@@ -7,7 +7,7 @@
       <span class="attr" *ngIf="wd.attribute">{{ wd.attribute }}</span>
     </span>
     <span class="detail-badge insc" *ngIf="wd.inscription"> <i class="fa fa-pen-fancy"></i> Insc. </span>
-    <span class="detail-badge exotic" *ngIf="!wd.inscription"> <i class="fa fa-scroll"></i> OS. </span>
+    <span class="detail-badge exotic" *ngIf="wd.oldSchool"> <i class="fa fa-scroll"></i> OS. </span>
     <!-- Exotic Mods -->
     <ng-container *ngIf="shopItem?.weaponDetails?.extraMods?.length">
       <span class="detail-badge exotic" *ngFor="let mod of shopItem.weaponDetails.extraMods" [title]="exoticModDescription(mod)">
@@ -41,6 +41,9 @@
     <i class="fa" [class.fa-star]="shopItem?.orderDetails?.dedicated" [class.fa-star-half-alt]="!shopItem?.orderDetails?.dedicated"></i>
     {{ shopItem?.orderDetails?.dedicated ? 'Dedicated' : 'Undedicated' }}
   </span>
+
+  <!-- Not Max -->
+  <span class="detail-badge not-max" *ngIf="shopItem?.orderDetails?.notMax"> <i class="fa fa-angles-down"></i>Not Max</span>
 
   <!-- Pre-Searing Flag -->
   <span class="detail-badge os" *ngIf="shopItem?.orderDetails?.pre"> <i class="fa fa-sun"></i> Pre-Searing </span>

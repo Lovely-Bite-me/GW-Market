@@ -114,6 +114,17 @@
     }
   }
 
+  // Not Max badge
+  &.not-max {
+    background: rgba(#e63922, 0.2);
+    color: rgba($parchment, 0.8);
+    border-color: rgba(#e63922, 0.4);
+
+    i {
+      color: #e63922;
+    }
+  }
+
   // Pre-Searing badge
   &.presearing {
     background: rgba(#ffd700, 0.2);

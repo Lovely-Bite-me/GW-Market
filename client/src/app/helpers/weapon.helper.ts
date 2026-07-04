@@ -43,6 +43,10 @@ export class WeaponHelper {
     return item?.family === 'weapon';
   }
 
+  static isNotMax(item: BasicItem): boolean {
+    return item?.family === 'weapon' || item?.family === 'upgrade';
+  }
+
   static isMiniature(item: BasicItem): boolean {
     return item?.family === 'miniature';
   }

@@ -273,6 +273,7 @@ export class KamadanService {
                 requirement: split.requirement,
                 attribute: split.attribute,
                 inscription: split.inscription,
+                oldSchool: split.oldSchool,
                 core: null,
                 prefix: null,
                 suffix: null,
@@ -481,10 +482,12 @@ export class KamadanService {
   private static findInscription(chunk: KamadanChunk): void {
     for (let s = 0; s < chunk.splits.length; s++) {
       const split = chunk.splits[s];
+      split.inscription = false;
+      split.oldSchool = false;
       for (let t = 0; t < this.inscriptionTags['true'].length; t++) {
         const tag = this.inscriptionTags['true'][t];
         if (tag.test(split.content)) {
-          chunk.splits[s].inscription = true;
+          split.inscription = true;
           split.content = split.content.replace(tag, '').trim();
           break; // Assuming only one requirement per split, exit after finding the first
         }
@@ -492,7 +495,7 @@ export class KamadanService {
       for (let t = 0; t < this.inscriptionTags['false'].length; t++) {
         const tag = this.inscriptionTags['false'][t];
         if (tag.test(split.content)) {
-          chunk.splits[s].inscription = false;
+          split.oldSchool = true;
           split.content = split.content.replace(tag, '').trim();
           break; // Assuming only one requirement per split, exit after finding the first
         }
