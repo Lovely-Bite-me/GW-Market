@@ -70,13 +70,13 @@
         <input type="datetime-local" formControlName="to" class="form-input custom-datetime w-full" />
       </div>
 
-      <!-- Counter: Negotiate price (NEGOCIATE_COUNTER) -->
-      <div class="message-form" *ngIf="isNegociateCounter">
+      <!-- Counter: Negotiate price (NEGOTIATE_COUNTER) -->
+      <div class="message-form" *ngIf="isNegotiateCounter">
         <div class="message-description py-1">
           Propose a counter-offer price. Choose the price and currency you find acceptable, then send your reply.
         </div>
-        <label for="negociate">Counter Price</label>
-        <input type="number" formControlName="negociate" class="form-input custom-datetime w-full" />
+        <label for="negotiate">Counter Price</label>
+        <input type="number" formControlName="negotiate" class="form-input custom-datetime w-full" />
         <label for="currency">Currency</label>
         <app-currency-dropdown
           [selectedCurrency]="replyForm.get('currency')?.value"

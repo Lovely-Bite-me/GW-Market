@@ -41,7 +41,7 @@ export class MessageCardComponent {
       case MessageType.MEETUP_AT:
       case MessageType.MEETUP_OVER:
         return 'Trade Meetup Proposal';
-      case MessageType.NEGOCIATE:
+      case MessageType.NEGOTIATE:
         return 'Offer Negotiation';
       case MessageType.REPUTATION_UP:
         return 'Reputation Gained';
@@ -130,11 +130,11 @@ export class MessageCardComponent {
           new Date(parseInt(data[2])).toLocaleString() +
           '. Try to connect with them to complete the trade.'
         );
-      case MessageType.NEGOCIATE:
+      case MessageType.NEGOTIATE:
         return (
           'The player ' +
           this.message.senderName +
-          ' proposed a negociated offer for the item ' +
+          ' proposed a negotiated offer for the item ' +
           data[0] +
           ' with a price of ' +
           data[1] +
@@ -142,11 +142,11 @@ export class MessageCardComponent {
           UtilityHelper.priceToString(parseInt(data[2]) as Price) +
           '. Try to connect with them to accept or refuse the offer.'
         );
-      case MessageType.NEGOCIATE_ACCEPT:
+      case MessageType.NEGOTIATE_ACCEPT:
         return (
           'The player ' +
           this.message.senderName +
-          ' accepted the negociated offer for the item ' +
+          ' accepted the negotiated offer for the item ' +
           data[0] +
           ' with a price of ' +
           data[1] +
@@ -154,11 +154,11 @@ export class MessageCardComponent {
           UtilityHelper.priceToString(parseInt(data[2]) as Price) +
           ' you proposed. Try to connect with them to complete the trade.'
         );
-      case MessageType.NEGOCIATE_REFUSE:
+      case MessageType.NEGOTIATE_REFUSE:
         return (
           'The player ' +
           this.message.senderName +
-          ' refused the negociated offer for the item ' +
+          ' refused the negotiated offer for the item ' +
           data[0] +
           ' with a price of ' +
           data[1] +
@@ -166,7 +166,7 @@ export class MessageCardComponent {
           UtilityHelper.priceToString(parseInt(data[2]) as Price) +
           ' without proposing another offer. You can try to connect with them to negotiate further.'
         );
-      case MessageType.NEGOCIATE_COUNTER:
+      case MessageType.NEGOTIATE_COUNTER:
         return (
           'The player ' +
           this.message.senderName +
@@ -245,10 +245,10 @@ export class MessageCardComponent {
       MessageType.MEETUP_COUNTER_OVER,
       MessageType.MEETUP_ACCEPT,
       MessageType.MEETUP_REFUSE,
-      MessageType.NEGOCIATE,
-      MessageType.NEGOCIATE_COUNTER,
-      MessageType.NEGOCIATE_ACCEPT,
-      MessageType.NEGOCIATE_REFUSE,
+      MessageType.NEGOTIATE,
+      MessageType.NEGOTIATE_COUNTER,
+      MessageType.NEGOTIATE_ACCEPT,
+      MessageType.NEGOTIATE_REFUSE,
       MessageType.REPUTATION_UP,
       MessageType.AUCTION_WON,
       MessageType.AUCTION_END
@@ -261,8 +261,8 @@ export class MessageCardComponent {
       MessageType.MEETUP_OVER,
       MessageType.MEETUP_COUNTER_AT,
       MessageType.MEETUP_COUNTER_OVER,
-      MessageType.NEGOCIATE,
-      MessageType.NEGOCIATE_COUNTER,
+      MessageType.NEGOTIATE,
+      MessageType.NEGOTIATE_COUNTER,
       MessageType.AUCTION_WON,
       MessageType.AUCTION_END
     ].includes(this.message.type);

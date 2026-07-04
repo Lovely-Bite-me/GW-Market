@@ -50,7 +50,7 @@ export class MessageService {
     return this.messagesSubject.asObservable().pipe(debounceTime(0));
   }
 
-  sendMessage(uuid: string, order: ItemOrder, type: 'meet-at' | 'meet-over' | 'negociate', content: any): void {
+  sendMessage(uuid: string, order: ItemOrder, type: 'meet-at' | 'meet-over' | 'negotiate', content: any): void {
     let messageType: MessageType;
     switch (type) {
       case 'meet-at':
@@ -59,8 +59,8 @@ export class MessageService {
       case 'meet-over':
         messageType = MessageType.MEETUP_OVER;
         break;
-      case 'negociate':
-        messageType = MessageType.NEGOCIATE;
+      case 'negotiate':
+        messageType = MessageType.NEGOTIATE;
         break;
     }
     const messageData: Array<string> = [order.item.name];
@@ -71,8 +71,8 @@ export class MessageService {
       case 'meet-over':
         messageData.push(new Date(content.from).getTime().toString(), new Date(content.to).getTime().toString());
         break;
-      case 'negociate':
-        messageData.push(content.negociate, content.currency);
+      case 'negotiate':
+        messageData.push(content.negotiate, content.currency);
         break;
     }
 
@@ -119,9 +119,9 @@ export class MessageService {
           MessageType.MEETUP_COUNTER_OVER
         );
         break;
-      case MessageType.NEGOCIATE:
-      case MessageType.NEGOCIATE_COUNTER:
-        replyOptions.push(MessageType.NEGOCIATE_ACCEPT, MessageType.NEGOCIATE_REFUSE, MessageType.NEGOCIATE_COUNTER);
+      case MessageType.NEGOTIATE:
+      case MessageType.NEGOTIATE_COUNTER:
+        replyOptions.push(MessageType.NEGOTIATE_ACCEPT, MessageType.NEGOTIATE_REFUSE, MessageType.NEGOTIATE_COUNTER);
         break;
       case MessageType.AUCTION_WON:
       case MessageType.AUCTION_END:
@@ -138,8 +138,8 @@ export class MessageService {
           switch (content.messageType) {
             case MessageType.MEETUP_ACCEPT:
             case MessageType.MEETUP_REFUSE:
-            case MessageType.NEGOCIATE_ACCEPT:
-            case MessageType.NEGOCIATE_REFUSE:
+            case MessageType.NEGOTIATE_ACCEPT:
+            case MessageType.NEGOTIATE_REFUSE:
               messageData = originalMessage.data; // reuse original data
               break;
             case MessageType.MEETUP_AT:
@@ -150,8 +150,8 @@ export class MessageService {
             case MessageType.MEETUP_COUNTER_OVER:
               messageData.push(new Date(content.from).getTime().toString(), new Date(content.to).getTime().toString());
               break;
-            case MessageType.NEGOCIATE_COUNTER:
-              messageData.push(content.negociate, content.currency);
+            case MessageType.NEGOTIATE_COUNTER:
+              messageData.push(content.negotiate, content.currency);
               break;
           }
 

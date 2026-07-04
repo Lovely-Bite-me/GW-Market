@@ -26,7 +26,7 @@ export class ReplyModalComponent extends Modal {
     this.replyForm = this.fb.group({
       from: [null],
       to: [null],
-      negociate: [null],
+      negotiate: [null],
       currency: ['ectos']
     });
   }
@@ -60,16 +60,16 @@ export class ReplyModalComponent extends Modal {
     return this.selectedMessageType === MessageType.MEETUP_COUNTER_OVER;
   }
 
-  get isNegociateCounter(): boolean {
-    return this.selectedMessageType === MessageType.NEGOCIATE_COUNTER;
+  get isNegotiateCounter(): boolean {
+    return this.selectedMessageType === MessageType.NEGOTIATE_COUNTER;
   }
 
   isAcceptOrRefuse(): boolean {
     return (
       this.selectedMessageType === MessageType.MEETUP_ACCEPT ||
       this.selectedMessageType === MessageType.MEETUP_REFUSE ||
-      this.selectedMessageType === MessageType.NEGOCIATE_ACCEPT ||
-      this.selectedMessageType === MessageType.NEGOCIATE_REFUSE
+      this.selectedMessageType === MessageType.NEGOTIATE_ACCEPT ||
+      this.selectedMessageType === MessageType.NEGOTIATE_REFUSE
     );
   }
 
@@ -87,11 +87,11 @@ export class ReplyModalComponent extends Modal {
         return 'Counter (slot)';
       case MessageType.MEETUP_COUNTER_OVER:
         return 'Counter (window)';
-      case MessageType.NEGOCIATE_ACCEPT:
+      case MessageType.NEGOTIATE_ACCEPT:
         return 'Accept';
-      case MessageType.NEGOCIATE_REFUSE:
+      case MessageType.NEGOTIATE_REFUSE:
         return 'Refuse';
-      case MessageType.NEGOCIATE_COUNTER:
+      case MessageType.NEGOTIATE_COUNTER:
         return 'Counter offer';
       default:
         return 'Unknown';
@@ -105,14 +105,14 @@ export class ReplyModalComponent extends Modal {
       case MessageType.MEETUP_OVER:
         return 'fa-calendar-alt';
       case MessageType.MEETUP_ACCEPT:
-      case MessageType.NEGOCIATE_ACCEPT:
+      case MessageType.NEGOTIATE_ACCEPT:
         return 'fa-check';
       case MessageType.MEETUP_REFUSE:
-      case MessageType.NEGOCIATE_REFUSE:
+      case MessageType.NEGOTIATE_REFUSE:
         return 'fa-times';
       case MessageType.MEETUP_COUNTER_AT:
       case MessageType.MEETUP_COUNTER_OVER:
-      case MessageType.NEGOCIATE_COUNTER:
+      case MessageType.NEGOTIATE_COUNTER:
         return 'fa-exchange-alt';
       default:
         return 'fa-reply';

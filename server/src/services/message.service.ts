@@ -90,10 +90,10 @@ export class MessageService {
     MessageType.MEETUP_REFUSE,
     MessageType.MEETUP_COUNTER_AT,
     MessageType.MEETUP_COUNTER_OVER,
-    MessageType.NEGOCIATE,
-    MessageType.NEGOCIATE_ACCEPT,
-    MessageType.NEGOCIATE_REFUSE,
-    MessageType.NEGOCIATE_COUNTER,
+    MessageType.NEGOTIATE,
+    MessageType.NEGOTIATE_ACCEPT,
+    MessageType.NEGOTIATE_REFUSE,
+    MessageType.NEGOTIATE_COUNTER,
   ];
   public static requestInsertMessage(type: MessageType, uuid: string, receiverShopId: string, data?: Array<string>): void {
     const senderShop = ShopService.allShopMap[uuid];

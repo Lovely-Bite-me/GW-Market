@@ -188,10 +188,10 @@ export class HeaderComponent implements OnInit {
             MessageType.MEETUP_COUNTER_OVER,
             MessageType.MEETUP_ACCEPT,
             MessageType.MEETUP_REFUSE,
-            MessageType.NEGOCIATE,
-            MessageType.NEGOCIATE_ACCEPT,
-            MessageType.NEGOCIATE_REFUSE,
-            MessageType.NEGOCIATE_COUNTER
+            MessageType.NEGOTIATE,
+            MessageType.NEGOTIATE_ACCEPT,
+            MessageType.NEGOTIATE_REFUSE,
+            MessageType.NEGOTIATE_COUNTER
           ].includes(message.type)
         ) {
           return false;

@@ -42,7 +42,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   public details: Array<string> = [];
   public whisperPopup = false;
   public messagePopup = false;
-  public messageType: 'meet-at' | 'meet-over' | 'negociate' = 'meet-at';
+  public messageType: 'meet-at' | 'meet-over' | 'negotiate' = 'meet-at';
   public orderOpen = false;
   public selectedOrder: ItemOrder | null = null;
   public selectedAuction: Auction | null = null;
@@ -76,7 +76,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   public messageTypeOptions: ToggleOption[] = [
     { value: 'meet-at', label: 'Time slot', icon: 'fa-clock' },
     { value: 'meet-over', label: 'Time window', icon: 'fa-hourglass-half' },
-    { value: 'negociate', label: 'Negotiate', icon: 'fa-handshake' }
+    { value: 'negotiate', label: 'Negotiate', icon: 'fa-handshake' }
   ];
 
   private bundleFamilies = ['special', 'consumable', 'tome', 'rune', 'material'];
@@ -180,7 +180,7 @@ export class ItemComponent implements OnInit, OnDestroy {
       this.messageForm = this.fb.group({
         from: [formatDate(Date.now() + 1 * 60 * 60 * 1000, 'yyyy-MM-ddTHH:mm', 'en-US')],
         to: [formatDate(Date.now() + 2 * 60 * 60 * 1000, 'yyyy-MM-ddTHH:mm', 'en-US')],
-        negociate: [0],
+        negotiate: [0],
         currency: [1]
       });
       this.storeService.setSearchedItemName(decodedName);
