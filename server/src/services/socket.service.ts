@@ -165,6 +165,11 @@ export class SocketService {
         socket.emit('GetOverview', overview);
       });
 
+      socket.on('getChangeLogs', () => {
+        const changelogs = ItemService.changeLogs;
+        socket.emit('GetChangeLogs', changelogs);
+      });
+
       // auction section
 
       socket.on('getPersonalAuctions', (auctions: Array<string>) => {

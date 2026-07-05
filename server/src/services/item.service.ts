@@ -1,4 +1,5 @@
 import { Index } from 'flexsearch';
+import { ChangeLog } from '../models/changelog.model';
 import { Item } from '../models/shop.model';
 import { KamadanService } from './kamadan.service';
 
@@ -10,6 +11,7 @@ export class ItemService {
   public static allItems: Array<Item> = [];
   public static allItemMap: { [key: string]: Item } = {};
   public static acronymMap: { [key: string]: string } = {};
+  public static changeLogs: Array<ChangeLog> = [];
   public static exoticUpgrades: Array<Item> = [];
   public static categoryInheritances: { [key: string]: Array<string> } = {};
   public static reverseCategoryInheritances: { [key: string]: Array<string> } = {};
@@ -32,6 +34,7 @@ export class ItemService {
     this.loadServices();
     this.loadExotic();
     this.loadAcronyms();
+    this.loadChangeLogs();
     this.generateClientJson();
     this.generateInheritances();
     this.allItems = Object.values(this.allItemMap).filter((item) => !item.hidden);
@@ -201,6 +204,11 @@ export class ItemService {
         this.acronymMap[pattern.toLowerCase()] = key;
       }
     }
+  };
+  private static loadChangeLogs = () => {
+    const jsonData = fs.readFileSync('./data/changelog.json');
+    const changelogs = JSON.parse(jsonData);
+    this.changeLogs = (changelogs as Array<ChangeLog>).reverse();
   };
 
   private static generateClientJson = () => {

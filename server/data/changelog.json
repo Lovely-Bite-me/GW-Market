@@ -1,0 +1,219 @@
+[
+  {
+    "date": "2026-01-04",
+    "features": ["Rebranding to GW market (https://gwmarket.net/)", "Daybreak certification method", "Phone support"]
+  },
+  {
+    "date": "2026-01-06",
+    "features": ["Last updated item tiles on main menu", "Daybreak keepalive you session when the site is open"]
+  },
+  {
+    "date": "2026-01-07",
+    "features": [
+      "guildwars.app has been shutdown by Arena.net, everyone need to use gwmarket.net",
+      "Offline shops are now a things and also displayed, still items will tends to be ordered by time"
+    ]
+  },
+  {
+    "date": "2026-01-09",
+    "features": ["added the service category, (not complete an poor in icons)"]
+  },
+  {
+    "date": "2026-01-11",
+    "features": ["Player character name in game certification."]
+  },
+  {
+    "date": "2026-01-13",
+    "features": ["Clean item order filter: time range => price"]
+  },
+  {
+    "date": "2026-01-14",
+    "features": ["macro to open shop CTRL + M (rare case of missin button)", "Code released to github https://github.com/Eta92/GW-Market"]
+  },
+  {
+    "date": "2026-01-15",
+    "features": [
+      "Ability to create and retrieve shop through character certification",
+      "Auto-restart for certification (shouldn't be ever down)"
+    ]
+  },
+  {
+    "date": "2026-01-16",
+    "features": [
+      "Support miniature dedication, hide OS in advanced and fix gold edition",
+      "Support of pre-searing in items and order edition (hidden)"
+    ]
+  },
+  {
+    "date": "2026-01-18",
+    "features": ["New interface linked to the original server", "Dual website support via : https://v2.gwmarket.net/"]
+  },
+  {
+    "date": "2026-01-19",
+    "features": ["Fix last item refresh messing with categories", "Special trophies section extended"]
+  },
+  {
+    "date": "2026-01-21",
+    "features": ["Removal of all rare non tradable weapons", "Public shop link available for v2", "Shop refresh clarified for v2"]
+  },
+  {
+    "date": "2026-01-22",
+    "features": ["Partial order message slider and clipboard copy for v2"]
+  },
+  {
+    "date": "2026-01-24",
+    "features": ["Better shop merging / retrieval", "Compact mode for shops (from Jean)"]
+  },
+  {
+    "date": "2026-01-25",
+    "features": [
+      "New design become the default one on https://gwmarket.net/",
+      "Old design have been relocated to https://old.gwmarket.net/"
+    ]
+  },
+  {
+    "date": "2026-01-26",
+    "features": ["Quick Help section added for recurring questions"]
+  },
+  {
+    "date": "2026-01-27",
+    "features": [
+      "Fixed old school confusion and added pre-nerf option",
+      "Black Dye as currency (usefull for pre-searing)",
+      "Form proper reset and attribute removed from martial weapons"
+    ]
+  },
+  {
+    "date": "2026-01-31",
+    "features": ["Price logging start, but the interfaces are not ready yet", "Reputation system added"]
+  },
+  {
+    "date": "2026-02-03",
+    "features": ["Quality of life shop update, public shop link fixed", "Many toast added to better inform on click actions"]
+  },
+  {
+    "date": "2026-02-08",
+    "features": ["New UX to edit all shop prices in one window", "Ability to import all stashes from Daybreak API"]
+  },
+  {
+    "date": "2026-02-13",
+    "features": ["Better Daybreak online tracking", "Shop activity indicator in all headers (can refresh from it)"]
+  },
+  {
+    "date": "2026-02-15",
+    "features": ["Ability to inspect the lowest price when setting your prices"]
+  },
+  {
+    "date": "2026-02-22",
+    "features": ["Auctions added to the market"]
+  },
+  {
+    "date": "2026-02-26",
+    "features": ["Auction refined and available on home page", "Weapon list reviewed and with extra details"]
+  },
+  {
+    "date": "2026-03-08",
+    "features": ["Notification system for auctions and reputation", "Messaging service to plan a rendezvous or to negotiate prices"]
+  },
+  {
+    "date": "2026-03-12",
+    "features": ["Personal note for shop items", "Daybreak inventory dump", "Run services rework"]
+  },
+  {
+    "date": "2026-03-14",
+    "features": ["Upgrades reworked to include stats", "\"Any rare\" weapon option (for WTB)"]
+  },
+  {
+    "date": "2026-03-19",
+    "features": [
+      "Partnership with Spanish Community (https://guildwarshispano.es/comercio)",
+      "Search preserved in advanced search (refresh and navigate)",
+      "Sorting possible in shops like in search"
+    ]
+  },
+  {
+    "date": "2026-03-22",
+    "features": ["Better price sorting for multi-currency displays", "Vendor gold value added for collectors"]
+  },
+  {
+    "date": "2026-04-01",
+    "features": [
+      "Zaishen keys removed from main currencies (used in less than 1% of shops)",
+      "Reputation down votes require a reason to pick",
+      "Many more information displayed in public shops",
+      "Vendor gold visible in items",
+      "Secret feature"
+    ]
+  },
+  {
+    "date": "2026-04-06",
+    "features": [
+      "Price history charts for all items",
+      "Desktop notification when shop goes offline",
+      "Player shops available in the search bar"
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "features": ["Daybreak dump requirements", "Better reputation update and highlight"]
+  },
+  {
+    "date": "2026-04-27",
+    "features": ["Reply button from messages"]
+  },
+  {
+    "date": "2026-04-30",
+    "features": ["Help section reworked with more content and sections", "Polymock pieces added in Special category"]
+  },
+  {
+    "date": "2026-05-07",
+    "features": [
+      "Phone ergonomic and shop sidebar reworked",
+      "New export panel granting CSV files",
+      "Important item display bug resolved",
+      "New details in purchases / history graphs"
+    ]
+  },
+  {
+    "date": "2026-06-08",
+    "features": [
+      "Legacy removed, all old school upgrade available for weapons",
+      "Gold value from daybreak",
+      "Avanced search support filter by upgrade"
+    ]
+  },
+  {
+    "date": "2026-06-13",
+    "features": [
+      "Recruitment links with new window to track recruits and points",
+      "Favorite system added to focus on what you need from home page"
+    ]
+  },
+  {
+    "date": "2026-06-25",
+    "features": [
+      "Code base is now 100% public on github",
+      "Toolbox send anonymous market data (stats show 10% of the traffic come from toolbox)",
+      "First Kamadan parser integration (poor accuracy)"
+    ]
+  },
+  {
+    "date": "2026-06-28",
+    "features": [
+      "Recruitment points now extends shop timer (limit +75min)",
+      "More stats for overview page",
+      "Cape trim service added",
+      "Acronyms added to the search bar"
+    ]
+  },
+  {
+    "date": "2026-07-05",
+    "features": [
+      "Not max option and tag added for weapon and upgrades",
+      "OldSchool and Inscription have to be selected manually with \"unknown\" default",
+      "Recruits are better refreshed",
+      "Change log section in about page, with automatic update popup to read from"
+    ],
+    "warning": "All OldSchool tags have been removed from items, they must be added back manually"
+  }
+]

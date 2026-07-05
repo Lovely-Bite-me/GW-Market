@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UtilityHelper } from '@app/helpers/utility.helper';
 import { ItemOrder } from '@app/models/order.model';
 
 @Component({
@@ -26,14 +25,6 @@ export class OrderRowComponent implements OnInit {
 
   public details = false;
   public isActive = false;
-
-  get fade(): string {
-    if (this.type === 'auction') {
-      return UtilityHelper.getAuctionOpacity(this.order.lastRefresh);
-    } else {
-      return UtilityHelper.getItemOpacity(this.order);
-    }
-  }
 
   ngOnInit(): void {
     this.isActive = !this.order.lastRefresh || Date.now() - this.order.lastRefresh < 1000 * 60 * 15;

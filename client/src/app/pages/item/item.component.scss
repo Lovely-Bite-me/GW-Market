@@ -527,11 +527,7 @@
     border: 1px solid rgba($gold, 0.5);
 
     .time-bucket-label {
-      color: $gold-light;
-    }
-
-    .time-bucket-header {
-      border-bottom-color: rgba($gold, 0.25);
+      color: rgba($gold, 1);
     }
 
     ::ng-deep app-order-row .order-row {
@@ -549,7 +545,7 @@
     background: rgba($obsidian-light, 0.4);
 
     .time-bucket-label {
-      color: $gold;
+      color: rgba($gold, 0.8);
     }
 
     ::ng-deep app-order-row .order-row {
@@ -558,20 +554,20 @@
 
       &:hover {
         background: rgba(#3a352e, 0.8);
-        border-color: rgba($gold, 0.35);
+        border-color: rgba($gold, 0.4);
       }
     }
   }
 
   &.week-bucket {
-    background: rgba($obsidian-light, 0.4);
+    background: rgba($obsidian-light, 0.3);
 
     .time-bucket-label {
-      color: rgba($gold, 0.75);
+      color: rgba($gold, 0.6);
     }
 
     ::ng-deep app-order-row .order-row {
-      background: rgba(#343029, 0.6);
+      background: rgba(#343029, 0.4);
       border: 1px solid rgba($gold, 0.15);
 
       &:hover {

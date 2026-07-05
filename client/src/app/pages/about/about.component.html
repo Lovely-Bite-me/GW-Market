@@ -126,25 +126,42 @@
           </div>
         </section>
 
-        <!-- Roadmap Section -->
-        <section class="info-card roadmap">
+        <!-- Changelog Section -->
+        <section class="info-card changelog">
           <div class="card-header">
-            <i class="fa fa-road"></i>
-            <h2>Roaostscompleted anwith all moajor freature s ajor featrrures implementeddmap</h2>
+            <i class="fa fa-clock-rotate-left"></i>
+            <h2>Changelog</h2>
           </div>
-          .
           <div class="card-body">
-            <p class="roadmap-intro">Features we're working on:</p>
-            <ul class="roadmap-list">
-              <li>
-                <i class="fa fa-circle-dot"></i>
-                <span>Build more interactions with the game (Daybreak & ToolBox)</span>
-              </li>
-            </ul>
-            <div class="policy-success">
-              <i class="fa fa-circle-check"></i>
-              <span>This project is complete with all major features implemented.</span>
+            <div class="changelog-entry" *ngFor="let log of changelogs | slice: 0 : 1">
+              <span class="changelog-date">{{ log.date }}</span>
+              <ul class="roadmap-list">
+                <li *ngFor="let feature of log.features">
+                  <i class="fa fa-circle-dot"></i><span>{{ feature }}</span>
+                </li>
+              </ul>
+              <div class="policy-warning" *ngIf="log.warning">
+                <i class="fa fa-triangle-exclamation"></i>
+                <span>{{ log.warning }}</span>
+              </div>
             </div>
+
+            <details class="changelog-older" [open]="olderLogsOpen" (toggle)="olderLogsOpen = !olderLogsOpen">
+              <summary><i class="fa fa-chevron-down"></i><span>Older updates</span></summary>
+
+              <div class="changelog-entry" *ngFor="let log of changelogs | slice: 1">
+                <span class="changelog-date">{{ log.date }}</span>
+                <ul class="roadmap-list">
+                  <li *ngFor="let feature of log.features">
+                    <i class="fa fa-circle-dot"></i><span>{{ feature }}</span>
+                  </li>
+                </ul>
+                <div class="policy-warning" *ngIf="log.warning">
+                  <i class="fa fa-triangle-exclamation"></i>
+                  <span>{{ log.warning }}</span>
+                </div>
+              </div>
+            </details>
           </div>
         </section>
       </div>

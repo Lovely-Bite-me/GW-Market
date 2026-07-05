@@ -239,29 +239,24 @@ $slate: #1a1a1e;
 }
 
 // ============================================
-// ROADMAP SECTION
+// CHANGELOG SECTION
 // ============================================
-.roadmap {
+.changelog {
   .card-body {
     padding-bottom: 20px;
   }
 }
 
-.roadmap-intro {
-  color: rgba($parchment, 0.7) !important;
-  font-style: italic;
-}
-
 .roadmap-list {
   list-style: none;
   padding: 0;
-  margin-top: -8px;
+  margin: 4px 0 0;
 
   li {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 0;
+    padding: 8px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     font-size: 14px;
     color: rgba($parchment, 0.85);
@@ -273,7 +268,79 @@ $slate: #1a1a1e;
     i {
       color: $gold-dim;
       font-size: 8px;
+      flex-shrink: 0;
     }
+  }
+}
+
+.changelog-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba($gold, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  .policy-warning {
+    margin-top: 10px;
+  }
+}
+
+.changelog-date {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: $gold;
+  background: rgba($gold, 0.08);
+  border: 1px solid rgba($gold, 0.2);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 6px;
+}
+
+.changelog-older {
+  margin-top: 16px;
+  padding-top: 4px;
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    cursor: pointer;
+    list-style: none;
+    color: rgba($parchment, 0.6);
+    font-size: 13px;
+    user-select: none;
+    transition: color 200ms ease;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    i {
+      color: $gold-dim;
+      font-size: 11px;
+      transition: transform 200ms ease;
+    }
+
+    &:hover {
+      color: $parchment;
+    }
+  }
+
+  &[open] summary i {
+    transform: rotate(180deg);
+  }
+
+  .changelog-entry:first-of-type {
+    padding-top: 10px;
   }
 }
 

@@ -6,6 +6,7 @@ import { UtilService } from './util.service';
 
 import { CurrentSubject } from '@app/helpers/current.subject';
 import { Auction } from '@app/models/auction.model';
+import { ChangeLog } from '@app/models/changelog.model';
 import { BasicItem } from '@app/models/item.model';
 import { SearchFilter, SearchResult } from '@app/models/order.model';
 import { Overview } from '@app/models/overview.model';
@@ -26,6 +27,7 @@ export class StoreService {
   private shopSecretSubject = new CurrentSubject<{ uuid: string; secret: string }>();
   private searchOrdersSubject = new CurrentSubject<SearchResult>();
   private overviewSubject = new CurrentSubject<Overview>();
+  private changelogsSubject = new CurrentSubject<Array<ChangeLog>>();
 
   constructor(
     private utilService: UtilService,
@@ -75,6 +77,10 @@ export class StoreService {
     this.socket.on('GetOverview', (data: Overview) => {
       this.overviewSubject.set(data);
     });
+    this.socket.on('GetChangeLogs', (data: Array<ChangeLog>) => {
+      this.changelogsSubject.set(data);
+    });
+    this.socket.emit('getChangeLogs');
   }
 
   requestSocket(field: string, option?: any): void {
@@ -145,6 +151,10 @@ export class StoreService {
 
   getOverview(): Observable<Overview> {
     return this.overviewSubject.asObservable().pipe(debounceTime(0));
+  }
+
+  getChangeLogs(): Observable<Array<ChangeLog>> {
+    return this.changelogsSubject.asObservable().pipe(debounceTime(0));
   }
 
   // ================================

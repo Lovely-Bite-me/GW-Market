@@ -141,28 +141,40 @@ export class ShopService {
         });
       }
     });
-    // recruit reflexion
-    // TODO update shop recruits on a regular basis (because of last refresh not refresed)
-    shops.forEach((shop) => {
+    // recruits reflection
+    this.updateShopRecruits();
+
+    this.refreshShops(true);
+    // overview init
+    if (!OverviewService.overviewInit) {
+      OverviewService.init();
+    }
+  }
+
+  public static updateShopRecruits(): void {
+    for (const uuid in this.allShopMap) {
+      const shop = this.allShopMap[uuid];
       if (shop.recruiter) {
         const recruiterShop = this.allShopMap[this.publicShopMap[shop.recruiter.shopId]];
         if (recruiterShop) {
           if (!recruiterShop.recruits) {
             recruiterShop.recruits = [];
           }
-          recruiterShop.recruits.push({
-            shopId: shop.publicId || '',
-            name: shop.player,
-            points: Math.floor(Math.log2(shop.items.length + 1)),
-            lastRefresh: shop.lastRefresh,
-          });
+          const existingRecruit = recruiterShop.recruits.find((r) => r.shopId === shop.publicId);
+          if (!existingRecruit) {
+            recruiterShop.recruits.push({
+              shopId: shop.publicId || '',
+              name: shop.player,
+              points: Math.floor(Math.log2(shop.items.length + 1)),
+              lastRefresh: shop.lastRefresh,
+            });
+          } else {
+            existingRecruit.name = shop.player;
+            existingRecruit.points = Math.floor(Math.log2(shop.items.length + 1));
+            existingRecruit.lastRefresh = shop.lastRefresh;
+          }
         }
       }
-    });
-    this.refreshShops(true);
-    // overview init
-    if (!OverviewService.overviewInit) {
-      OverviewService.init();
     }
   }
 

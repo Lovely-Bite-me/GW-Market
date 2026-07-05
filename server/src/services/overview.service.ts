@@ -68,6 +68,9 @@ export class OverviewService {
       repartitionCurrencyBlackDye: 0,
     };
 
+    // trigger recruit update reflexion to prepare stats
+    ShopService.updateShopRecruits();
+
     // Group purchases by hour: floor each date to the start of its hour
     const customerByHour = new Map<number, number>();
     const shopByHour = new Map<number, number>();

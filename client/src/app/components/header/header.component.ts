@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityHelper } from '@app/helpers/utility.helper';
+import { ChangeLog } from '@app/models/changelog.model';
 import { BasicItem } from '@app/models/item.model';
 import { Message, MessageType } from '@app/models/message.model';
 import { OrderType, Shop } from '@app/models/shop.model';
@@ -8,6 +9,7 @@ import { MessageService } from '@app/services/message.service';
 import { ShopService } from '@app/services/shop.service';
 import { StoreService } from '@app/services/store.service';
 import { ToggleOption } from '@shared/components/toggle-group/toggle-group.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +34,7 @@ export class HeaderComponent implements OnInit {
   public filteredMessages: Array<Message>;
   public unreadMessages = 0;
   public showOverlay = false;
+  public changelogs: Array<ChangeLog> = [];
 
   public readOption: 'all' | 'unread' = 'all';
   public readOptions: ToggleOption[] = [
@@ -52,6 +55,7 @@ export class HeaderComponent implements OnInit {
     private shopService: ShopService,
     private storeService: StoreService,
     private messageService: MessageService,
+    private toastrService: ToastrService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -72,6 +76,28 @@ export class HeaderComponent implements OnInit {
     });
     this.storeService.getOverlay().subscribe(overlay => {
       this.showOverlay = overlay;
+      this.cdr.detectChanges();
+    });
+    this.storeService.getChangeLogs().subscribe(changelogs => {
+      this.changelogs = changelogs;
+      const lastlog = changelogs[0];
+      const lastknownLog = localStorage.getItem('lastChangelog');
+      if (lastlog && lastknownLog !== lastlog.date) {
+        this.toastrService.info(lastlog.features.map(f => '• ' + f).join('<br>'), 'Change log of the ' + lastlog.date, {
+          timeOut: 60000,
+          closeButton: true,
+          enableHtml: true,
+          positionClass: 'toast-bottom-right'
+        });
+        if (lastlog.warning) {
+          this.toastrService.warning(lastlog.warning, 'Warning', {
+            timeOut: 60000,
+            closeButton: true,
+            positionClass: 'toast-bottom-right'
+          });
+        }
+        localStorage.setItem('lastChangelog', lastlog.date);
+      }
       this.cdr.detectChanges();
     });
   }
